@@ -1,0 +1,18 @@
+---
+ - hosts: all
+   become: true
+   tasks:
+     - name : Add Apt-Key for Docker Repository
+       apt_key: url=https://download.docker.com/linux/ubuntu/gpg state=present
+
+     - name : Add Apt-Repository URL
+       apt_repository: repo="deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" state=present
+
+     - name: Install Docker-Container-Engine
+       apt: name=docker-ce update_cache=yes state=present install_recommends=yes
+
+     - name: Install Python-pip
+       apt: name=python-pip state=present install_recommends=yes
+
+     - name: Install docker-py
+       pip: name=docker-py state=present

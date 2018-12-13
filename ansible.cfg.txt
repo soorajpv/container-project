@@ -1,0 +1,3 @@
+[defaults]
+inventory = /home/ubuntu/myHosts
+host_key_checking = False

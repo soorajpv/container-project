@@ -1,0 +1,15 @@
+---
+- name: script to start a ubuntu container and install basic packages
+  hosts: all
+  become: true
+  tasks:
+     - name: Transfer the script
+       copy: src=doc.sh dest=/tmp mode=0777
+     - name: Transfer apache2 config file
+       copy: src=apache2.conf dest=/home/ubuntu mode=0777
+
+     - name: Transfer the container script
+       copy: src=dockerfile dest=/home/ubuntu mode=0777
+
+     - name: Execute the script
+       command: sh /tmp/doc.sh
